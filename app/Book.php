@@ -13,7 +13,7 @@ class Book extends Model
         'pages',
         'ISBN',
         'published_at',
-        'country',
+        //'country',
         'editorial_id',
         'author_id'
     ];

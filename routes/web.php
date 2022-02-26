@@ -17,7 +17,6 @@ Route::get('/', function () {
 
 Route::get('/hola', 'TestController@hola');
 
-
 Route::get('/books', 'BookController@index'); // Mostrar todos
 Route::get('/books/create', 'BookController@create'); // Crear un book
 Route::post('/books/save', 'BookController@save'); // Guardar un book nuevo
@@ -26,7 +25,7 @@ Route::get('/books/{id}/edit', 'BookController@edit'); // Mostrar el formulario 
 Route::post('/books/{id}/update', 'BookController@update'); // Guardar los datos de edición del book seleccionado
 Route::post('/books/{id}/delete', 'BookController@delete'); // Eliminar un book
 
-Route::get('/authors', 'AuthorController@index');
+/*Route::get('/authors', 'AuthorController@index');
 Route::get('/authors/{id}/edit','AuthorController@edit');
 
-Route::get('/editorials', 'BookController@editorials');
+Route::get('/editorials', 'BookController@editorials');*/

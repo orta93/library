@@ -25,6 +25,11 @@ Route::get('/books/{id}/edit', 'BookController@edit'); // Mostrar el formulario 
 Route::post('/books/{id}/update', 'BookController@update'); // Guardar los datos de edición del book seleccionado
 Route::post('/books/{id}/delete', 'BookController@delete'); // Eliminar un book
 
+Route::group(['prefix' => '/authors'], function () {
+    Route::get('/', 'AuthorController@index');
+    Route::get('/create', 'AuthorController@create');
+    Route::post('/save', 'AuthorController@save');
+});
 /*Route::get('/authors', 'AuthorController@index');
 Route::get('/authors/{id}/edit','AuthorController@edit');
 

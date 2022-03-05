@@ -12,6 +12,4 @@ class Author extends Model
         'name',
         'last_name',
     ];
-
-    public $timestamps = false;
 }

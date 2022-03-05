@@ -9,7 +9,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        return "Mostrando todos los libros";
+        return view('books.index');
     }
 
     public function show(Request $request, $id)

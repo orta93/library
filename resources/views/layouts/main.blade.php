@@ -211,6 +211,7 @@ Alexander Pierce - Web Developer
 <h1>
 @yield('title')
 </h1>
+@yield('actions')
 </section>
 
 <section class="content">

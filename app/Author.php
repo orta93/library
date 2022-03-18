@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-    protected $table = 'authors';
-
     protected $fillable = [
         'name',
         'last_name',
     ];
 
-    public $timestamps = false;
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
 }

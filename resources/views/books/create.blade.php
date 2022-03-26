@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-Crear un libro
+Crear un Libro
 @stop
 
 @section('content')
@@ -15,35 +15,37 @@ Crear un libro
     <div class="box-body">
         <div class="form-group">
             <label for="title">Nombre del libro</label>
-            <input type="text" id="title" name="title" class="form-control" placeholder="Ingrese el nombre del libro"/>
+            <input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}" placeholder="Ingrese el nombre del libro"/>
         </div>
         <div class="form-group">
-            <label for="pages">Numero de paginas del libro</label>
-            <input type="number" id="pages" name="pages" class="form-control" placeholder="Ingrese la cantidad"/>
+            <label for="pages">Paginas del libro</label>
+            <input type="number" id="pages" name="pages" class="form-control" value="{{ old('pages') }}" placeholder="Ingrese la cantidad de paginas del libro"/>
         </div>
         <div class="form-group">
-            <label for="isbn">ISBN</label>
-            <input type="text" id="isbn" name="isbn" class="form-control" placeholder="Ingrese el isbn"/>
+            <label for="isbn">ISBN del libro</label>
+            <input type="text" id="isbn" name="isbn" class="form-control" value="{{ old('isbn') }}" placeholder="Ingrese el ISBN del libro"/>
         </div>
         <div class="form-group">
-            <label for="published_at">Fecha de publicación</label>
-            <input type="date" id="published_at" name="published_at" class="form-control" placeholder="Ingrese la fecha de publicación"/>
+            <label for="published_at">Fecha de publicacion libro</label>
+            <input type="date" id="published_at" name="published_at" class="form-control" value="{{ old('published_at') }}" placeholder="Ingrese la fecha de publicacion del libro"/>
         </div>
         <div class="form-group">
-            <label for="author_id">Seleccione un autor</label>
-            <select id="author_id" class="form-control" name="author_id">
+            <label for="author_id">Autor</label>
+            <select id="author_id" name="author_id" class="form-control">
                 <option>Seleccione un autor</option>
+
                 @foreach($authors as $author)
-                    <option value="{{ $author->id }}">{{ $author->name }} {{ $author->last_name }}</option>
+                    <option value="{{ $author->id }}" @if(intval(old('author_id')) == $author->id) selected @endif>{{ $author->full_name }}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="editorial_id">Seleccione una editorial</label>
-            <select id="editorial_id" class="form-control" name="editorial_id">
+            <label for="editorial_id">Editorial</label>
+            <select id="editorial_id" name="editorial_id" class="form-control">
                 <option>Seleccione una editorial</option>
+
                 @foreach($editorials as $editorial)
-                    <option value="{{ $editorial->id }}">{{ $editorial->name }}</option>
+                    <option value="{{ $editorial->id }}" @if(intval(old('editorial_id')) == $editorial->id) selected @endif>{{ $editorial->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -51,6 +53,7 @@ Crear un libro
 
     <div class="box-footer">
         <button type="submit" class="btn btn-primary">Crear libro</button>
+        <a href="/books" class="btn btn-default">Cancelar</a>
     </div>
     </form>
 </div>

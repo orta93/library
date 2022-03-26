@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEditorialsTable extends Migration
+class AlterAuthorsTableForSoftDeletes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateEditorialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('editorials', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('authors', function (Blueprint $table) {
+            $table->softDeletes()->after('last_name');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateEditorialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('editorials');
+        Schema::table('authors', function (Blueprint $table) {
+            $table->dropColumn('deleted_at');
+        });
     }
 }

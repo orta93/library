@@ -15,15 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hola', 'TestController@hola');
-
-Route::get('/books', 'BookController@index'); // Mostrar todos
-Route::get('/books/create', 'BookController@create'); // Crear un book
-Route::post('/books/save', 'BookController@save'); // Guardar un book nuevo
-Route::get('/books/{id}', 'BookController@show'); // Mostrar el id indicado
-Route::get('/books/{id}/edit', 'BookController@edit'); // Mostrar el formulario de edición del book seleccionado
-Route::post('/books/{id}/update', 'BookController@update'); // Guardar los datos de edición del book seleccionado
-Route::post('/books/{id}/delete', 'BookController@delete'); // Eliminar un book
+Route::group(['prefix' => '/books'], function () {
+    Route::get('/', 'BookController@index'); // Mostrar todos
+    Route::get('/create', 'BookController@create'); // Crear un book
+    Route::post('/save', 'BookController@save'); // Guardar un book nuevo
+    Route::get('/{id}', 'BookController@show'); // Mostrar el id indicado
+    Route::get('/{id}/edit', 'BookController@edit'); // Mostrar el formulario de edición del book seleccionado
+    Route::post('/{id}/update', 'BookController@update'); // Guardar los datos de edición del book seleccionado
+    Route::post('/{id}/delete', 'BookController@delete'); // Eliminar un book
+    Route::post('/{id}/restore', 'BookController@restore'); // Restaurar un book
+});
 
 Route::group(['prefix' => '/authors'], function () {
     Route::get('/', 'AuthorController@index'); // Mostrar todos
@@ -33,6 +34,18 @@ Route::group(['prefix' => '/authors'], function () {
     Route::get('/{id}/edit', 'AuthorController@edit'); // Mostrar el formulario de edición del author seleccionado
     Route::post('/{id}/update', 'AuthorController@update'); // Guardar los datos de edición del author seleccionado
     Route::post('/{id}/delete', 'AuthorController@delete'); // Eliminar un author
+    Route::post('/{id}/restore', 'AuthorController@restore'); // Restaurar un author
+});
+
+Route::group(['prefix' => '/editorials'], function () {
+    Route::get('/', 'EditorialController@index'); // Mostrar todos
+    Route::get('/create', 'EditorialController@create'); // Crear un editorial
+    Route::post('/save', 'EditorialController@save'); // Guardar un editorial nuevo
+    Route::get('/{id}', 'EditorialController@show'); // Mostrar el id indicado
+    Route::get('/{id}/edit', 'EditorialController@edit'); // Mostrar el formulario de edición del editorial seleccionado
+    Route::post('/{id}/update', 'EditorialController@update'); // Guardar los datos de edición del editorial seleccionado
+    Route::post('/{id}/delete', 'EditorialController@delete'); // Eliminar un editorial
+    Route::post('/{id}/restore', 'EditorialController@restore'); // Restaurar un editorial
 });
 
 /*Route::get('/authors', 'AuthorController@index');

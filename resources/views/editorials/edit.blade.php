@@ -1,0 +1,28 @@
+@extends('layouts.main')
+
+@section('title')
+Editar el editorial
+@stop
+
+@section('content')
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Editar el editorial</h3>
+    </div>
+
+    <form role="form" method="POST" action="/editorials/{{ $editorial->id }}/update">
+    @csrf
+    <div class="box-body">
+        <div class="form-group">
+            <label for="name">Nombre del editorial</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $editorial->name) }}" placeholder="Ingrese el nombre del editorial"/>
+        </div>
+    </div>
+
+    <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Editar editorial</button>
+        <a href="/editorials" class="btn btn-default">Cancelar</a>
+    </div>
+    </form>
+</div>
+@stop
